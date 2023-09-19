@@ -15,9 +15,14 @@ Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 char *to_jaden_case (char *jaden_case, const char *string)
 {
 // write to jaden_case and return it
-  *jaden_case = '\0';
+	*jaden_case = '\0';
   int i = 0;
-  for (char* p = string; *p != 0; ++p) {
+  if (*string >= 97) {
+    jaden_case[i] = *string - 32; //если первая буква маленькая, то делаем её заглавной
+    ++i;
+  }
+  for (char* p = string + i; *p != 0; ++p) 
+  {
     if (jaden_case[i - 1] == ' ' && *p >= 97) {
       // 97 первая буква с нижним регистром в таблице ASCII (a)
       jaden_case[i] = *p - 32; // отнимаем 32 чтобы получить туже буквы только в верхнем регистре в таблице ASCII
@@ -27,6 +32,6 @@ char *to_jaden_case (char *jaden_case, const char *string)
     jaden_case[i] = *p;
     ++i;
   }
-  jaden_case[i + 1] = '\0';
-  return jaden_case;
+  jaden_case[i] = '\0';
+	 return jaden_case;
 }
