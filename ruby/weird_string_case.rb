@@ -1,0 +1,29 @@
+:begin
+Write a function that accepts a string, and returns the same string with all even indexed characters in each word upper cased, and all odd indexed characters in each word lower cased. 
+The indexing just explained is zero based, so the zero-ith index is even, therefore that character should be upper cased and you need to start over for each word.
+
+The passed in string will only consist of alphabetical characters and spaces(' '). Spaces will only be present if there are multiple words. Words will be separated by a single space(' ').
+
+Examples:
+
+"String" => "StRiNg"
+"Weird string case" => "WeIrD StRiNg CaSe"
+:end
+
+def weirdcase string
+  chars = string.chars
+  x = 0
+  (0..chars.length-1).each do |i|
+    if chars[i] == ' '
+      x = 0
+      next
+    end
+    if x.even? 
+      chars[i].upcase!
+    else
+      chars[i].downcase!
+    end
+    x += 1
+  end
+  chars.join
+end
